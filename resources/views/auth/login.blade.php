@@ -16,7 +16,7 @@
                     @include('auth.forms.login.' . $authMethod)
                 </div>
 
-                <div class="grid half collapse-xs gap-xl v-center">
+                <div class="grid half right-focus collapse-xs gap-xl v-center">
                     <div class="text-left ml-xxs">
                         @include('components.custom-checkbox', [
                             'name' => 'remember',
@@ -26,6 +26,9 @@
                         ])
                     </div>
                     <div class="text-right">
+                        @if($authMethod === 'standard' && setting('registration-enabled', false))
+                            <a class="button outline" href="{{ baseUrl('/register') }}">{{ trans('auth.sign_up') }}</a>
+                        @endif
                         <button class="button primary" tabindex="3">{{ title_case(trans('auth.log_in')) }}</button>
                     </div>
                 </div>
